@@ -68,7 +68,7 @@ const PlayersInfo = () => {
   };
   return (
     <div className="container ">
-      <h3 className="text-center py-5">Make Your Bangladeshi Cricket XI</h3>
+      <h3 className="text-center py-5">Make Your Cricket XI of Bangladesh</h3>
       <div className="row">
         <div className="col-lg-8">
           <div className="row">
