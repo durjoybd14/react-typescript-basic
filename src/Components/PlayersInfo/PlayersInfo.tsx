@@ -38,6 +38,13 @@ const players: IPlayerType[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolorem eligendi error.",
   },
+  {
+    name: "Mahmudullah",
+    playAs: "Allrounder",
+    age: 35,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolorem eligendi error.",
+  },
 ];
 
 const PlayersInfo = () => {
