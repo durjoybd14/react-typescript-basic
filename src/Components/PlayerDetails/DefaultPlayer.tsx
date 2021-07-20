@@ -3,13 +3,8 @@ interface IPlayer {
   player: { name: string; playAs?: string; age: number; description?: string };
 }
 
-interface IRemove {
-  handleRemove: (name: string) => void;
-}
-
-const PlayerDetails = (props: IPlayer & IRemove) => {
+const DefaultPlayer = (props: IPlayer) => {
   const { name, playAs, age, description } = props.player;
-  const handleRemove = props.handleRemove;
   return (
     <div className="col-lg-6 col-md-6 col-sm-12 mt-4">
       <div
@@ -25,17 +20,9 @@ const PlayerDetails = (props: IPlayer & IRemove) => {
           <h5 className="card-title text-center">{playAs}</h5>
           <p className="card-text text-muted text-justify">{description}</p>
         </div>
-        <button
-          className="btn btn-danger"
-          onClick={() => {
-            handleRemove(name);
-          }}
-        >
-          Remove
-        </button>
       </div>
     </div>
   );
 };
 
-export default PlayerDetails;
+export default DefaultPlayer;

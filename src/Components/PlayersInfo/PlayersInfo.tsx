@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PlayerDetails from "../PlayerDetails/PlayerDetails";
 import { useForm, SubmitHandler } from "react-hook-form";
+import DefaultPlayer from "../PlayerDetails/DefaultPlayer";
 
 type Inputs = {
   name: string;
@@ -49,6 +50,10 @@ const players: IPlayerType[] = [
 
 const PlayersInfo = () => {
   const [restPlayer, setRestPlayer] = useState<IPlayerType[]>([]);
+  const handleRemove = (name: string) => {
+    const newPlayer = restPlayer.filter((rest) => rest.name !== name);
+    setRestPlayer(newPlayer);
+  };
   const {
     register,
     handleSubmit,
@@ -68,10 +73,14 @@ const PlayersInfo = () => {
         <div className="col-lg-8">
           <div className="row">
             {players.map((player) => (
-              <PlayerDetails key={player.name} player={player} />
+              <DefaultPlayer key={player.name} player={player} />
             ))}
             {restPlayer.map((player) => (
-              <PlayerDetails key={player.name} player={player} />
+              <PlayerDetails
+                key={player.name}
+                player={player}
+                handleRemove={handleRemove}
+              />
             ))}
           </div>
         </div>
@@ -80,11 +89,13 @@ const PlayersInfo = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <input
-                {...register("name")}
+                {...register("name", { required: true })}
                 className="form-control mt-4"
                 placeholder="Name"
               />
-              {errors.name && <span>This field is required</span>}
+              {errors.name && (
+                <span className="text-danger">This field is required</span>
+              )}
             </div>
 
             <div>
@@ -93,7 +104,9 @@ const PlayersInfo = () => {
                 className="form-control mt-2"
                 placeholder="Age"
               />
-              {errors.age && <span>This field is required</span>}
+              {errors.age && (
+                <span className="text-danger">This field is required</span>
+              )}
             </div>
             <div>
               <input
@@ -101,7 +114,9 @@ const PlayersInfo = () => {
                 className="form-control mt-2"
                 placeholder="Play as"
               />
-              {errors.playAs && <span>This field is required</span>}
+              {errors.playAs && (
+                <span className="text-danger">This field is required</span>
+              )}
             </div>
             <div>
               <textarea
